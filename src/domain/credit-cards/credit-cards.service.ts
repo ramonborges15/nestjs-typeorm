@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../users/entities/user.entity';
-import { CreateCreditCardDto } from './dto/create-credit-card.dto';
-import { UpdateCreditCardDto } from './dto/update-credit-card.dto';
+import { CreateCreditCardDto } from '../../infra/http/credit-cards/dtos/create-credit-card.dto';
+import { UpdateCreditCardDto } from '../../infra/http/credit-cards/dtos/update-credit-card.dto';
 import { CreditCard } from './entities/credit-card.entity';
 
 @Injectable()
