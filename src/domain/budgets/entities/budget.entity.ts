@@ -1,5 +1,6 @@
-import { CreditCard } from "src/core/credit-cards/entities/credit-card.entity";
-import { User } from "src/core/users/entities/user.entity";
+
+import { CreditCard } from "@domain/credit-cards/entities/credit-card.entity";
+import { User } from "@domain/users/entities/user.entity";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Relation, OneToMany, ManyToOne, JoinColumn, OneToOne } from "typeorm"
 
 

@@ -1,10 +1,9 @@
+import { HttpModule } from '@infra/http/http.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CreditCardsModule } from './core/credit-cards/credit-cards.module';
-import { OutgoingsModule } from './core/outgoings/outgoings.module';
-import { UsersModule } from './core/users/users.module';
+import { DatabaseModule } from './infra/database/database.module';
 
 @Module({
   imports: [
@@ -18,11 +17,8 @@ import { UsersModule } from './core/users/users.module';
       synchronize: true,
       autoLoadEntities: true,
     }),
-    UsersModule,
-    OutgoingsModule,
-    CreditCardsModule
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+    DatabaseModule,
+    HttpModule
+  ]
 })
 export class AppModule { }

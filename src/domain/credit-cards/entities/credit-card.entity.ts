@@ -1,5 +1,5 @@
-import { Outgoing } from "src/core/outgoings/entities/outgoing.entity";
-import { User } from "src/core/users/entities/user.entity";
+import { Outgoing } from "@domain/outgoings/entities/outgoing.entity";
+import { User } from "@domain/users/entities/user.entity";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Relation, OneToMany, ManyToOne, JoinColumn } from "typeorm"
 
 @Entity()
@@ -14,13 +14,16 @@ export class CreditCard {
     updateAt: string;
 
     @Column()
+    name: string;
+
+    @Column()
     limit: number;
 
     @Column()
-    closingAt: string;
+    closingDayAt: number;
 
     @Column()
-    dueAt: string; // Due date
+    dueDayAt: number;
 
     @OneToMany(type => Outgoing, (outgoing) => outgoing.creditCard)
     outgoings: Relation<Outgoing[]>;

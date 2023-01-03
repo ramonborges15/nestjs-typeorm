@@ -1,6 +1,6 @@
 
-import { CreditCard } from "src/core/credit-cards/entities/credit-card.entity";
-import { Outgoing } from "src/core/outgoings/entities/outgoing.entity";
+import { CreditCard } from "@domain/credit-cards/entities/credit-card.entity";
+import { Outgoing } from "@domain/outgoings/entities/outgoing.entity";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Relation, OneToMany } from "typeorm";
 
 @Entity()
