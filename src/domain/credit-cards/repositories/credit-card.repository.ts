@@ -2,6 +2,7 @@ import { CreateCreditCardDto } from "../../../infra/http/credit-cards/dtos/creat
 import { CreditCard } from "../entities/credit-card.entity";
 
 export abstract class CreditcardRepository {
-    abstract create(createCreditCardDto: CreateCreditCardDto): Promise<any>;
+    abstract create(creditCard: CreditCard): Promise<any>;
     abstract findAll(): Promise<CreditCard[]>;
+    abstract findById(creditCardId: number): Promise<CreditCard>;
 }

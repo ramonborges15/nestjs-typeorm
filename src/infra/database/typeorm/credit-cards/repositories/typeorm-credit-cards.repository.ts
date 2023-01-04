@@ -1,39 +1,18 @@
 import { CreditCard } from "@domain/credit-cards/entities/credit-card.entity";
-import { User } from "@domain/users/entities/user.entity";
-import { CreateCreditCardDto } from "@infra/http/credit-cards/dtos/create-credit-card.dto";
+import { CreditcardRepository } from "@domain/credit-cards/repositories/credit-card.repository";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
 @Injectable()
-export class TypeOrmCreditCardsRepository implements TypeOrmCreditCardsRepository {
+export class TypeOrmCreditCardsRepository implements CreditcardRepository {
     constructor(
         @InjectRepository(CreditCard)
-        private creditCardsRepository: Repository<CreditCard>,
-        @InjectRepository(User)
-        private usersRepository: Repository<User>
+        private creditCardsRepository: Repository<CreditCard>
     ) { }
 
-    async create(createCreditCardDto: CreateCreditCardDto): Promise<any> {
-        const user = await this.usersRepository.findOne({
-            where: {
-                id: createCreditCardDto.userId
-            }
-        })
-
-        if (!user) {
-            throw '404 - Client response error!';
-        }
-
-        const creditCard = {
-            closingDayAt: createCreditCardDto.closingDayAt,
-            dueDayAt: createCreditCardDto.dueDayAt,
-            limit: createCreditCardDto.limit,
-            name: createCreditCardDto.name,
-            user: user
-        }
-
-        return await this.creditCardsRepository.save(creditCard);
+    async create(creditCard: CreditCard): Promise<any> {
+        await this.creditCardsRepository.save(creditCard);
     }
 
     async findAll(): Promise<any[]> {
@@ -42,5 +21,9 @@ export class TypeOrmCreditCardsRepository implements TypeOrmCreditCardsRepositor
                 user: true
             }
         });
+    }
+
+    findById(creditCardId: number): Promise<CreditCard> {
+        return this.creditCardsRepository.findOne({ where: { id: creditCardId } });
     }
 }

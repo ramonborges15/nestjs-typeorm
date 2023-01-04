@@ -14,6 +14,14 @@ export class TypeOrmUsersRepository implements UsersRepository {
         private usersRepository: Repository<User>
     ) { }
 
+    async findById(userId: number): Promise<User> {
+        return await this.usersRepository.findOne({
+            where: {
+                id: userId
+            }
+        });
+    }
+
     async create(createUserDto: CreateUserDto): Promise<any> {
         return await this.usersRepository.save(createUserDto);
     }
